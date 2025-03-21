@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Socket.io Test</title>
+		<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+	</head>
+	<body>
+		<h1>Socket.io Client Test</h1>
+		<script>
+			const socket = io("http://localhost:3000");
+
+			socket.on("connect", () => {
+				console.log("✅ Connected to server:", socket.id);
+
+				socket.emit(
+					"userConnected",
+					"67ac9994dd86e8e122bab53a",
+					(response) => {
+						console.log("🟢 Server Response:", response);
+					}
+				);
+
+				// Listen for task-created events
+				socket.on("task-created", (task) => {
+					console.log("🔥 Task Created:", task);
+				});
+				// Listen for task-updated event
+				socket.on("task-updated", (task) => {
+					console.log("🔄 Task Updated:", task);
+				});
+
+				// Listen for task-status-updated event
+				socket.on("task-status-updated", (task) => {
+					console.log("✅ Task Status Updated:", task);
+				});
+
+				// Listen for task-attachment-update event
+				socket.on("task-attachment-update", (task) => {
+					console.log("📎 Task Attachment Updated:", task);
+				});
+
+				// Listen for user-removed event
+				socket.on("user-removed", (user) => {
+					console.log("❌ User Removed:", user);
+				});
+
+				// Listen for user-added event
+				socket.on("user-added", (user) => {
+					console.log("➕ User Added:", user);
+				});
+
+				// Listen for task-deleted event
+				socket.on("task-deleted", (taskId) => {
+					console.log("🗑️ Task Deleted:", taskId);
+				});
+			});
+		</script>
+	</body>
+</html>

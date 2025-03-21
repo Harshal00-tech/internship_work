@@ -1,0 +1,18 @@
+<section class = 'pagination'>
+  <%if((prevPage != firstPage && (firstPage != currentPage))) {%>
+      <a href="/?page=<%=firstPage%>"><%=firstPage%></a>
+      <div class='inline'>...</div>
+  <%}%>
+  <%if(prevPage) {%>
+      <a href="/?page=<%=prevPage%>"><%=prevPage%></a>
+  <%}%>
+  <a href="/?page=<%=currentPage%>" class="active"><%=currentPage%></a>
+  <%if (hasNextPage) {%>
+      <a href="/?page=<%=nextPage%>"><%=nextPage%></a>
+  <%}%>
+  
+  <%if((nextPage != lastPage) && (currentPage != lastPage)) {%>
+      <div class='inline'>...</div>
+      <a href="/?page=<%=lastPage%>"><%=lastPage%></a>
+  <%}%>
+</section>
